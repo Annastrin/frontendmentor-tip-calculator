@@ -1,4 +1,4 @@
-# vue-hello-world
+# Frontendmentor Tip Calculator
 
 ## Project setup
 ```
@@ -22,3 +22,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Project history
+
+npm install -g @vue/cli
+vue create vue-hello-world
+npm install -D sass-loader@^10 sass
+vue add unit-jest
