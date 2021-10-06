@@ -63,7 +63,8 @@ export default {
     },
     tipPerPerson() {
       if (this.calcPeople !== 0) {
-        return this.calcBill * (this.calcTip / 100) / this.calcPeople;
+        let calcTipPerPerson = this.calcBill * (this.calcTip / 100) / this.calcPeople;
+        return calcTipPerPerson.toFixed(2);
       } else {
         return 0;
       }
@@ -71,7 +72,7 @@ export default {
     totalPerPerson() {
       if (this.calcPeople !== 0) {
         let total = this.calcBill + this.calcBill * (this.calcTip / 100);
-        return total / this.calcPeople;
+        return (total / this.calcPeople).toFixed(2);
       } else {
         return 0;
       }
