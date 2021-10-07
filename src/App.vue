@@ -1,5 +1,18 @@
 <template>
-  <h1 class="logo"><span>spli</span><span>tter</span></h1>
+  <h1 class="logo">
+    <div>
+      <span>s</span>
+      <span>p</span>
+      <span>l</span>
+      <span>i</span>
+    </div>
+    <div>
+      <span>t</span>
+      <span>t</span>
+      <span>e</span>
+      <span>r</span>
+    </div>
+  </h1>
   <TipCalculator/>
 </template>
 
@@ -44,20 +57,22 @@ body {
 }
 
 #app {
-  
+  margin-top: 40px;
 }
 
 .logo {
   margin: 0 auto;
-  max-width: 80px;
+  max-width: 150px;
   font-size: 1rem;
-  font-weight: normal;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+
+  div {
+    line-height: 1.5;
+    text-align: center;
+    text-transform: uppercase;
+  }
 
   span {
-    display: block;
+    padding: 0 5px;
   }
 }
 </style>
