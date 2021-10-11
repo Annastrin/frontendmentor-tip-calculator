@@ -1,0 +1,20 @@
+// Palette
+$white: hsl(0, 0%, 100%);
+$primary: hsl(172, 67%, 45%);
+$darkCyan: hsl(183, 100%, 15%);
+$greyishCyan-1: hsl(186, 14%, 43%);
+$greyishCyan-2: hsl(184, 14%, 56%);
+$lightGreyishCyan-1: hsl(185, 41%, 84%);
+$lightGreyishCyan-2: hsl(189, 41%, 97%);
+
+// Colors
+$mainBg: $lightGreyishCyan-1;
+$calculatorBg: $white;
+$inputBg: $lightGreyishCyan-2;
+$inputFocusBorder: $primary;
+$inputFocusText: $darkCyan;
+$billInfoText: $greyishCyan-1;
+$btnBg: $darkCyan;
+$btnActiveBg: $primary;
+$btnText: $white;
+$btnActiveText: $darkCyan;
