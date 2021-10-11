@@ -30,16 +30,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
-$white: hsl(0, 0%, 100%);
-$primary: hsl(172, 67%, 45%);
-$darkCyan: hsl(183, 100%, 15%);
-$greyishCyan-1: hsl(186, 14%, 43%);
-$greyishCyan-2: hsl(184, 14%, 56%);
-$lightGreyishCyan-1: hsl(185, 41%, 84%);
-$lightGreyishCyan-2: hsl(189, 41%, 97%);
-
-$backgroundColor: $lightGreyishCyan-1;
+@import 'assets/scss/_variables.scss';
 
 * {
   box-sizing: border-box;
@@ -48,7 +39,7 @@ $backgroundColor: $lightGreyishCyan-1;
 html {
   font-family: 'Space Mono', monospace;
   font-size: 24px;
-  background-color: $backgroundColor;
+  background-color: $mainBg;
 }
 
 body {
@@ -56,12 +47,17 @@ body {
   padding: 0;
 }
 
+input {
+  font-family: inherit;
+  font-weight: 700;
+}
+
 #app {
   margin-top: 40px;
 }
 
 .logo {
-  margin: 0 auto;
+  margin: 0 auto 31px;
   max-width: 150px;
   font-size: 1rem;
 
