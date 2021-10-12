@@ -26,7 +26,7 @@
         <p>Total<span>/ person</span></p>
         <p>${{ totalPerPerson }}</p>
       </div>
-      <button type="reset" @click="reset">Reset</button>
+      <button type="reset" class="btn reset-btn" @click="reset" :disabled="isResetDisabled">Reset</button>
     </div>
   </div>
 </template>
@@ -102,6 +102,9 @@ export default {
       } else {
         return 0;
       }
+    },
+    isResetDisabled() {
+      return this.billSum || this.peopleNum || this.customTipPercent || this.tipPercent !== 0 ? false : true;
     }
   },
   methods: {
