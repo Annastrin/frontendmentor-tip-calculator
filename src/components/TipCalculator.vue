@@ -8,17 +8,8 @@
       <div class="bill-info__block">
         <p>Select Tip %</p>
         <div class="tip-amount">
-          <input type="radio" name="tip-5" id="tip-5" value="5" v-model="tipPercent" @click="resetCustomTip">
-          <label for="tip-5">5%</label>
-          <input type="radio" name="tip-10" id="tip-10" value="10" v-model="tipPercent" @click="resetCustomTip">
-          <label for="tip-10">10%</label>
-          <input type="radio" name="tip-15" id="tip-15" value="15" v-model="tipPercent" @click="resetCustomTip">
-          <label for="tip-15">15%</label>
-          <input type="radio" name="tip-25" id="tip-25" value="25" v-model="tipPercent" @click="resetCustomTip">
-          <label for="tip-25">25%</label>
-          <input type="radio" name="tip-50" id="tip-50" value="50" v-model="tipPercent" @click="resetCustomTip">
-          <label for="tip-50">50%</label>
-          <input type="text" name="custom-tip" id="custom-tip" placeholder="Custom" v-model="customTipPercent" @focus="resetTip">
+          <button class="btn tip-btn" :class="{'tip-btn__active': btn.active}" @click="resetCustomTip(), setTipPercent(btn.value), setActiveTipBtn(btn.id)" v-for="btn in tipPercentBtn" :key="btn.id">{{btn.value}}%</button>
+          <input type="text" name="custom-tip" id="custom-tip" class="input-field input-field-tip" placeholder="Custom" v-model="customTipPercent" @focus="resetTip">
         </div>
       </div>
       <div class="bill-info__block">
@@ -48,10 +39,45 @@ export default {
       billSum: '',
       peopleNum: '',
       tipPercent: 0,
-      customTipPercent: ''
+      customTipPercent: '',
+      tipPercentBtn: [
+        {
+          id: 0,
+          value: 5,
+          active: false
+        },
+        {
+          id: 1,
+          value: 10,
+          active: false
+        },
+        {
+          id: 2,
+          value: 15,
+          active: false
+        },
+        {
+          id: 3,
+          value: 25,
+          active: false
+        },
+        {
+          id: 4,
+          value: 50,
+          active: false
+        }
+      ]
     }
   },
   computed: {
+    calcTipPercent: {
+      get() {
+        return this.tipPercent;
+      },
+      set(val) {
+        this.tipPercent = val;
+      }
+    },
     calcTip() {
       return (this.customTipPercent || this.tipPercent) ? (this.customTipPercent || this.tipPercent) : 0;
     },
@@ -79,14 +105,25 @@ export default {
     }
   },
   methods: {
+    setTipPercent(val) {
+      this.calcTipPercent = val;
+    },
+    setActiveTipBtn(id) {
+      this.tipPercentBtn.forEach(btn => btn.active = false);
+      this.tipPercentBtn[id].active = true;
+    },
     reset() {
       this.billSum = '';
       this.peopleNum = '';
       this.tipPercent = 0;
       this.customTipPercent = '';
+      this.tipPercentBtn.forEach(btn => btn.active = false);
     },
     resetTip() {
+      if (this.tipPercent !== 0) {
+        this.tipPercentBtn.forEach(btn => btn.active = false);
       this.tipPercent = 0;
+      }
     },
     resetCustomTip() {
       if (this.customTipPercent) {
