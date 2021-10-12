@@ -2,28 +2,35 @@
   <div class="tip-calculator">
     <div class="bill-info">
       <div class="bill-info__block">
-        <p>Bill</p>
-        <input type="text" name="bill-sum" id="bill-sum" placeholder="0" v-model="billSum" @blur="toFloatString('billSum')">
+        <p class="field-name">Bill</p>
+        <div class="field-box">
+          <input type="text" name="bill-sum" id="bill-sum" class="input-field" placeholder="0" v-model="billSum" @blur="toFloatString('billSum')">
+        </div>
       </div>
       <div class="bill-info__block">
-        <p>Select Tip %</p>
+        <p class="field-name">Select Tip %</p>
         <div class="tip-amount">
           <button class="btn tip-btn" :class="{'tip-btn__active': btn.active}" @click="resetCustomTip(), setTipPercent(btn.value), setActiveTipBtn(btn.id)" v-for="btn in tipPercentBtn" :key="btn.id">{{btn.value}}%</button>
           <input type="text" name="custom-tip" id="custom-tip" class="input-field input-field-tip" placeholder="Custom" v-model="customTipPercent" @focus="resetTip">
         </div>
       </div>
       <div class="bill-info__block">
-        <p>Number of People</p>
-        <input type="text" name="people" id="people" placeholder="0" required v-model="peopleNum">
+        <div class="field-name-box">
+          <p class="field-name">Number of People</p>
+          <span class="field-error" v-if="this.billSum && !this.peopleNum">Can&#39;t be zero</span>
+        </div>
+        <div class="field-box">
+          <input type="text" name="people" id="people" class="input-field" placeholder="0" required v-model="peopleNum">
+        </div>
       </div>
     </div>
     <div class="total-info">
       <div class="total-info__block">
-        <p>Tip Amount<span>/ person</span></p>
+        <p class="field-name">Tip Amount<span>/ person</span></p>
         <p>${{ tipPerPerson }}</p>
       </div>
       <div class="total-info__block">
-        <p>Total<span>/ person</span></p>
+        <p class="field-name">Total<span>/ person</span></p>
         <p>${{ totalPerPerson }}</p>
       </div>
       <button type="reset" class="btn reset-btn" @click="reset" :disabled="isResetDisabled">Reset</button>
@@ -92,7 +99,7 @@ export default {
         let calcTipPerPerson = this.calcBill * (this.calcTip / 100) / this.calcPeople;
         return calcTipPerPerson.toFixed(2);
       } else {
-        return 0;
+        return 0.00;
       }
     },
     totalPerPerson() {
@@ -100,7 +107,7 @@ export default {
         let total = this.calcBill + this.calcBill * (this.calcTip / 100);
         return (total / this.calcPeople).toFixed(2);
       } else {
-        return 0;
+        return 0.00;
       }
     },
     isResetDisabled() {
