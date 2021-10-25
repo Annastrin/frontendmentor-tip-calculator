@@ -54,12 +54,20 @@ input {
 
 #app {
   margin-top: 40px;
+
+  @media screen and (min-width: $desktop) {
+    margin-top: 153px;
+  }
 }
 
 .logo {
   margin: 0 auto 31px;
   max-width: 150px;
   font-size: 1rem;
+
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 79px;
+  }
 
   div {
     line-height: 1.5;

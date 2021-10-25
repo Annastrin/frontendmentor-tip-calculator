@@ -12,7 +12,7 @@
         <p class="field-name">Select Tip %</p>
         <div class="tip-amount">
           <button class="btn tip-btn" :class="{'tip-btn__active': btn.active}" @click="resetCustomTip(), setTipPercent(btn.value), setActiveTipBtn(btn.id)" v-for="btn in tipPercentBtn" :key="btn.id">{{btn.value}}%</button>
-          <input type="text" name="custom-tip" id="custom-tip" class="input-field input-field-tip" placeholder="Custom" v-model="customTipPercent" @focus="resetTip">
+          <input type="text" name="custom-tip" id="custom-tip" class="input-field input-field--tip" placeholder="Custom" v-model="customTipPercent" @focus="resetTip">
         </div>
       </div>
       <div class="bill-info__block">
@@ -28,12 +28,18 @@
     </div>
     <div class="total-info">
       <div class="total-info__block">
-        <p class="field-name">Tip Amount<span>/ person</span></p>
-        <p>${{ tipPerPerson }}</p>
+        <div class="total-info__title">
+          <div class="total-info__title-name">Tip Amount</div>
+          <div class="total-info__title-details">/ person</div>
+        </div>
+        <p class="total-info__sum">${{ tipPerPerson }}</p>
       </div>
       <div class="total-info__block">
-        <p class="field-name">Total<span>/ person</span></p>
-        <p>${{ totalPerPerson }}</p>
+        <div class="total-info__title">
+          <div class="total-info__title-name">Total</div>
+          <div class="total-info__title-details">/ person</div>
+        </div>
+        <p class="total-info__sum">${{ totalPerPerson }}</p>
       </div>
       <button type="reset" class="btn reset-btn" @click="reset" :disabled="isResetDisabled">Reset</button>
     </div>
@@ -101,7 +107,7 @@ export default {
         let calcTipPerPerson = this.calcBill * (this.calcTip / 100) / this.calcPeople;
         return calcTipPerPerson.toFixed(2);
       } else {
-        return 0.00;
+        return parseFloat(0).toFixed(2);
       }
     },
     totalPerPerson() {
@@ -109,7 +115,7 @@ export default {
         let total = this.calcBill + this.calcBill * (this.calcTip / 100);
         return (total / this.calcPeople).toFixed(2);
       } else {
-        return 0.00;
+        return parseFloat(0).toFixed(2);
       }
     },
     isResetDisabled() {
@@ -134,7 +140,7 @@ export default {
     resetTip() {
       if (this.tipPercent !== 0) {
         this.tipPercentBtn.forEach(btn => btn.active = false);
-      this.tipPercent = 0;
+        this.tipPercent = 0;
       }
     },
     resetCustomTip() {
@@ -172,7 +178,204 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .invalid {
-    border: 1px solid red;
+  @import '../assets/scss/_variables.scss';
+
+  .btn {
+    display: block;
+    width: 100%;
+    height: 48px;
+    border: 0;
+    border-radius: 5px;
+    padding: 0;
+    background-color: $btnBg;
+    color: $btnText;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .tip-btn {
+    background-color: $btnBg;
+    color: $btnText;
+
+    &__active {
+      background-color: $btnActiveBg;
+      color: $btnActiveText;
+    }
+  }
+
+  .reset-btn {
+    background-color: $btnActiveBg;
+    color: $resetBtnText;
+    font-size: 20px;
+
+    @media screen and (min-width: $desktop) {
+      margin-top: 122px;
+    }
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
+  }
+
+  .input-field {
+    width: 100%;
+    max-width: 100%;
+    height: 48px;
+    padding: 0 17px;
+    border-radius: 5px;
+    background-color: $inputBg;
+    border: 1px solid $inputBg;
+    outline: 1px solid $inputBg;
+    font-size: 1rem;
+    text-align: right;
+    color: $inputFocusText;
+    transition: all 0.3s;
+
+    &:focus {
+      border: 1px solid $inputFocusBorder;
+      outline: 1px solid $inputFocusBorder;
+    }
+
+    &__invalid {
+      border: 1px solid $inputInfalidBorder;
+      outline: 1px solid $inputInfalidBorder;
+    }
+
+    &--bill,
+    &--people {
+      padding: 0 17px 0 40px;
+    }
+
+    &--tip {
+      @media screen and (min-width: $desktop) {
+        padding: 0 13px;
+      }
+    }
+  }
+
+  .tip-calculator {
+    max-width: 704px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 34px 24px;
+    background-color: $calculatorBg;
+    font-weight: 700;
+
+    @media screen and (min-width: $desktop) {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      max-width: 922px;
+      padding: 32px 34px 34px 50px;
+    }
+  }
+
+  .bill-info {
+    padding: 0 8px;
+    color: $billInfoText;
+
+    @media screen and (min-width: $desktop) {
+      max-width: 378px;
+      padding: 14px 0 0 0;
+    }
+
+    &__block:not(:last-of-type) {
+      margin-bottom: 33px;
+
+      @media screen and (min-width: $desktop) {
+        margin-bottom: 42px;
+      }
+    }
+  }
+
+  .total-info {
+    border-radius: 12px;
+    padding: 39px 24px 24px;
+    background-color: $totalInfoBg;
+
+    @media screen and (min-width: $desktop) {
+      flex: 1;
+      max-width: 412px;
+      padding: 42px 40px 38px;
+    }
+
+    &__block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+
+      @media screen and (min-width: $desktop) {
+        margin-bottom: 28px;
+      }
+    }
+
+    &__title-name {
+      color: $totalInfoTitleText;
+      font-size: 0.65rem;
+    }
+
+    &__title-details {
+      font-size: 13px;
+      color: $totalInfoDetailsText;
+    }
+
+    &__sum {
+      margin: 0;
+      font-size: 30px;
+      color: $totalSumText;
+
+      @media screen and (min-width: $desktop) {
+        font-size: 46px;
+      }
+    }
+  }
+
+  .field-name,
+  .field-name-box {
+    margin: 0 0 6px;
+    font-size: 0.65rem;
+  }
+
+  .field-name-box {
+    display: flex;
+    justify-content: space-between;
+
+    .field-name {
+      margin: 0;
+    }
+  }
+
+  .field-box {
+    width: 100%;
+    position: relative;
+
+    svg {
+      position: absolute;
+      left: 18px;
+      top: calc(50% - 8.5px);
+    }
+  }
+
+  .field-error {
+    color: $errorText;
+  }
+
+  .tip-amount {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    padding-top: 10px;
+
+    @media screen and (min-width: $desktop) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 </style>

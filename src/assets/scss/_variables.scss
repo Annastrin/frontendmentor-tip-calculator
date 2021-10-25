@@ -6,15 +6,26 @@ $greyishCyan-1: hsl(186, 14%, 43%);
 $greyishCyan-2: hsl(184, 14%, 56%);
 $lightGreyishCyan-1: hsl(185, 41%, 84%);
 $lightGreyishCyan-2: hsl(189, 41%, 97%);
+$darkRed: hsl(8, 31%, 59%);
 
 // Colors
 $mainBg: $lightGreyishCyan-1;
 $calculatorBg: $white;
+$totalInfoBg: $darkCyan;
+$totalInfoTitleText: $white;
+$totalInfoDetailsText: $greyishCyan-2;
+$totalSumText: $primary;
 $inputBg: $lightGreyishCyan-2;
 $inputFocusBorder: $primary;
+$inputInfalidBorder: $darkRed;
 $inputFocusText: $darkCyan;
 $billInfoText: $greyishCyan-1;
 $btnBg: $darkCyan;
 $btnActiveBg: $primary;
 $btnText: $white;
 $btnActiveText: $darkCyan;
+$resetBtnText: $darkCyan;
+$errorText: $darkRed;
+
+// Breakpoints
+$desktop: '960px';
