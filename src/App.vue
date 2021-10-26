@@ -53,10 +53,12 @@ input {
 }
 
 #app {
-  margin-top: 40px;
+  min-height: 933px;
+  padding-top: 40px;
 
   @media screen and (min-width: $desktop) {
-    margin-top: 153px;
+    min-height: 1024px;
+    padding-top: 153px;
   }
 }
 

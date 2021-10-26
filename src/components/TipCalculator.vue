@@ -209,12 +209,13 @@ export default {
   }
 
   .reset-btn {
+    margin-top: 31px;
     background-color: $btnActiveBg;
     color: $resetBtnText;
     font-size: 20px;
 
     @media screen and (min-width: $desktop) {
-      margin-top: 122px;
+      margin-top: 124px;
     }
 
     &:disabled {
@@ -286,11 +287,17 @@ export default {
       padding: 14px 0 0 0;
     }
 
-    &__block:not(:last-of-type) {
+    &__block {
       margin-bottom: 33px;
 
       @media screen and (min-width: $desktop) {
-        margin-bottom: 42px;
+        margin-bottom: 41px;
+      }
+    }
+
+    &__block:last-of-type {
+      @media screen and (min-width: $desktop) {
+        margin-bottom: 0;
       }
     }
   }
