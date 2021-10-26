@@ -1,31 +1,22 @@
 # Frontendmentor Tip Calculator
 
-## Project setup
-```
-npm install
-```
+This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX).
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## How it works
 
-### Compiles and minifies for production
-```
-npm run build
-```
+The app calculates the correct tip and total cost of the bill per person
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Technologies
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Vue
+- SCSS
 
-### Project history
+## Project history
 
-npm install -g @vue/cli
-vue create vue-hello-world
-npm install -D sass-loader@^10 sass
-vue add unit-jest
+```npm install -g @vue/cli```
+
+```vue create frontendmentor-tip-calculator```
+
+```npm install -D sass-loader@^10 sass```
+
+```vue add unit-jest```
