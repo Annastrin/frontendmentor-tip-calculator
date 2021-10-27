@@ -40,6 +40,7 @@ html {
   font-family: 'Space Mono', monospace;
   font-size: 24px;
   background-color: $mainBg;
+  color: $mainText;
 }
 
 body {
